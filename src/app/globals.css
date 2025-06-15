@@ -1,26 +1,275 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --zinc-200: rgb(228, 228, 231);
+  --zinc-300: rgb(212, 212, 216);
+  --zinc-400: rgb(161, 161, 170);
+  --zinc-500: rgb(113, 113, 122);
+  --zinc-600: rgb(82, 82, 91);
+  --zinc-700: rgb(63, 63, 70);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --zinc-200: var(--zinc-700);
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+}
+
+section {
+  margin-bottom: 5rem;
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+
+/* Typography */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  margin-bottom: 2rem;
+  color: var(--foreground);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  color: var(--zinc-600);
+}
+
+.dark p {
+  color: var(--zinc-400);
+}
+
+/* Link Styles */
+a {
+  color: var(--foreground);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+a:hover {
+  opacity: 1;
+}
+
+/* Bubble Effect for Social Links */
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.social-link {
+  position: relative;
+  padding: 0.5rem;
+  color: var(--zinc-500);
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  inset: -0.5rem;
+  background: var(--zinc-200);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.dark .social-link::before {
+  background: var(--zinc-700);
+}
+
+.social-link:hover {
+  color: var(--foreground);
+  transform: translateY(-1px);
+}
+
+.social-link:hover::before {
+  opacity: 0.15;
+  transform: scale(1.1);
+}
+
+.social-link:active {
+  transform: translateY(0);
+}
+
+.social-link:active::before {
+  transform: scale(0.95);
+}
+
+/* Work Experience Styles */
+.experience-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.experience-item {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: -3.5rem;
+  width: 1px;
+  background-color: var(--zinc-200);
+}
+
+.experience-item:last-child::before {
+  bottom: 0;
+}
+
+.experience-company {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.experience-role {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 0.25rem;
+  line-height: 1.5;
+}
+
+.experience-date {
+  font-size: 0.875rem;
+  color: var(--zinc-500);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.experience-description {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--zinc-500);
+  max-width: 36rem;
+}
+
+/* Utilities */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-zinc-500 {
+  color: var(--zinc-500);
+}
+
+.dark .text-zinc-400 {
+  color: var(--zinc-400);
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 4rem 1.25rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.125rem;
+  }
+
+  section {
+    margin-bottom: 4rem;
+  }
+
+  .experience-item {
+    padding-left: 1.5rem;
+  }
+
+  .experience-company {
+    font-size: 1.125rem;
+  }
+
+  .experience-description {
+    font-size: 0.875rem;
+  }
+
+  .social-links {
+    gap: 1rem;
+  }
 }
