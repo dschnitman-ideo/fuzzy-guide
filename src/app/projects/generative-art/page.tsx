@@ -14,23 +14,32 @@ export default function GenerativeArtProject() {
       
       <div className="prose dark:prose-invert max-w-none">
         <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-          This project explores generative art through a dynamic, animated grid of images. Each image is randomly sourced and displayed in a responsive, animated layout. The grid demonstrates how code and randomness can create visually engaging compositions. Scroll down to see the grid animate into view, and experience how each image is uniquely generated.
+          I am a generative artist exploring form through code under the alias <span className="font-semibold">cyberia</span>. For over two years, I've committed to an iterative practice of daily code sketching in Processing and p5.js.
         </p>
-        <div className="aspect-video bg-zinc-100 dark:bg-zinc-800 mb-8">
+        {/* <div className="aspect-video bg-zinc-100 dark:bg-zinc-800 mb-8"> */}
           {/* Placeholder for project image */}
-        </div>
-        <h2 className="text-2xl font-semibold mb-4">Project Details</h2>
-        <p className="text-zinc-600 dark:text-zinc-400">
-          [Project details coming soon]
-        </p>
+        {/* </div> */}
       </div>
 
       {/* Animated Grid Section (full width) */}
       <ParallaxGrid />
 
-      {/* Column content below the grid */}
+      {/* Sticker Pack Project Details */}
       <div className="prose dark:prose-invert max-w-none mt-16">
-        <h2 className="text-2xl font-semibold mb-4">More About This Project</h2>
+        <h2 className="text-2xl font-semibold mb-4">Sticker Pack</h2>
+      </div>
+
+      {/* Column content below the grid */}
+      <div className="prose dark:prose-invert max-w-none mt-8">
+        <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+          My digital artwork, <span className="font-semibold">Sticker Pack</span>, was featured on 85 billboards in Tokyo, Japan through Neo Shibuya TV.
+        </p>
+        <div className="w-full flex justify-center mb-8">
+          {/* Vertical video placeholder */}
+          <div className="w-[320px] h-[570px] bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-lg">
+            Vertical Video
+          </div>
+        </div>
         <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
           Here you can add more detailed descriptions, process notes, or additional images related to the generative art project. This area is in the main column, so it matches the top of the page and is easy to expand with more content.
         </p>
@@ -43,6 +52,77 @@ export default function GenerativeArtProject() {
               Placeholder
             </div>
           ))}
+        </div>
+        {/* EDAA Section */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-semibold mb-4">Emerging Digital Artists Award</h2>
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+            In 2022 I was selected to be Featured Artist for the Emerging Digital Artists Award in Canada.
+          </p>
+          <div className="flex flex-row gap-6 justify-center">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                className="w-[120px] h-[213px] bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-base shadow-lg"
+              >
+                IG Story {i + 1}
+              </div>
+            ))}
+          </div>
+          <div className="text-center text-zinc-500 text-sm mt-2">Process breakdown for Space Fling artwork</div>
+          <div className="prose dark:prose-invert max-w-none mt-6 mb-8">
+            <p className="text-zinc-600 dark:text-zinc-400">Each step in the process was documented and shared as part of my daily code sketching practice. These stories highlight the evolution of Space Fling from initial concept to final artwork.</p>
+            <p className="text-zinc-600 dark:text-zinc-400">Experimentation and iteration were key to developing the visual language and interactive elements of the piece.</p>
+          </div>
+          <div className="flex flex-col items-center mb-4 w-full">
+            <div className="w-full aspect-video bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-base shadow-lg mb-2">
+              Space Fling Artwork
+            </div>
+            <div className="text-zinc-500 text-sm mb-2 w-full text-left">Final Space Fling artwork</div>
+            <a
+              href="https://cyberia.space/space-fling"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 dark:text-blue-400 underline w-full text-left block mt-1"
+            >
+              https://cyberia.space/space-fling
+            </a>
+          </div>
+        </div>
+        {/* Fermented Fruit Section */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-semibold mb-4">Fermented Fruit</h2>
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+            Fermented Fruit is a generative art series created for Art Blocks and rendered in real-time in the browser. The project explores cellular automata, grid subdivisions, and fruit-inspired color palettes to create unique, evolving compositions.
+          </p>
+          <div className="flex flex-row gap-6 justify-center mb-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div
+                key={i}
+                className="w-[120px] h-[213px] bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-base shadow-lg"
+              >
+                IG Story {i + 1}
+              </div>
+            ))}
+          </div>
+          <div className="text-center text-zinc-500 text-sm mb-6">Process breakdown for Fermented Fruit</div>
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+            The project features the simulated lifeforms of cellular automata that evolve and shapeshift down an asymmetrical grid. The final artwork juxtaposes a number of textured cellular automata patterns against one another within a singular composition. The title <span className="font-semibold">Fermented Fruit</span> emerges from the cellular patterns that are the primary subject of the series. The patterns produced by growing cellular automata of simulated microbes or mold evoke the process of fermentation.
+          </p>
+          <div className="flex flex-row gap-6 justify-center mb-4">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                className="w-[180px] h-[240px] bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-base shadow-lg"
+              >
+                Poster {i + 1}
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-2 w-full max-w-2xl mx-auto">
+            <a href="https://www.artblocks.io/collections/presents/projects/0x7f6b468b54c6e2b3e3e2c2b2e2e2e2e2e2e2e2e2" target="_blank" rel="noopener noreferrer" className="text-blue-700 dark:text-blue-400 underline text-left">View on Art Blocks</a>
+            <a href="https://cyberia.codes/fruit.html" target="_blank" rel="noopener noreferrer" className="text-blue-700 dark:text-blue-400 underline text-left">https://cyberia.codes/fruit.html</a>
+          </div>
         </div>
       </div>
     </main>
