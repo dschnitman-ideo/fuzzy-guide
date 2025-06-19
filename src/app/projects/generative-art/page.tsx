@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 
 export default function GenerativeArtProject() {
+  const [parallaxImages, setParallaxImages] = React.useState<string[]>([]);
   return (
     <main className="max-w-2xl mx-auto px-8 py-20">
       <Link href="/" className="text-blue-700 dark:text-blue-400 hover:underline mb-8 inline-block">
@@ -14,15 +15,21 @@ export default function GenerativeArtProject() {
       
       <div className="prose dark:prose-invert max-w-none">
         <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-          I am a generative artist exploring form through code under the alias <span className="font-semibold">cyberia</span>. For over two years, I've committed to an iterative practice of daily code sketching in Processing and p5.js.
+          I am a generative artist exploring form through code under the alias 
+          <a 
+            href="https://www.instagram.com/_cyber.ia/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="font-semibold text-blue-700 dark:text-blue-400 hover:underline inline-flex items-center"
+          >
+            cyberia <span aria-hidden="true" className="ml-1">↗</span>
+          </a>.
+          For over two years, I've committed to an iterative practice of daily code sketching in Processing and p5.js. All of this work was coded by hand, drawing on open source references, prior to the advent of AI coding tools.
         </p>
-        {/* <div className="aspect-video bg-zinc-100 dark:bg-zinc-800 mb-8"> */}
-          {/* Placeholder for project image */}
-        {/* </div> */}
       </div>
 
       {/* Animated Grid Section (full width) */}
-      <ParallaxGrid />
+      <ParallaxGrid setParallaxImages={setParallaxImages} />
 
       {/* Sticker Pack Project Details */}
       <div className="prose dark:prose-invert max-w-none mt-16">
@@ -32,26 +39,26 @@ export default function GenerativeArtProject() {
       {/* Column content below the grid */}
       <div className="prose dark:prose-invert max-w-none mt-8">
         <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-          My digital artwork, <span className="font-semibold">Sticker Pack</span>, was featured on 85 billboards in Tokyo, Japan through Neo Shibuya TV.
+          My digital artwork, <span className="font-semibold">Sticker Pack</span>, is a generative piece created with the p5.js JavaScript library. The work was featured on 85 billboards on NEO SHIBUYA TV in Tokyo, Japan. The animation runs 28 seconds in MP4 format at 1920 x 1080 resolution.
         </p>
         <div className="w-full flex justify-center mb-8">
-          {/* Vertical video placeholder */}
-          <div className="w-[320px] h-[570px] bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-lg">
-            Vertical Video
+          {/* Vertical video for Sticker Pack */}
+          <div className="w-full max-w-2xl aspect-[1/1] bg-zinc-300 rounded-xl flex items-center justify-center overflow-hidden">
+            <video src="/images/generative-art/shibuya.mov" controls className="w-full h-full object-cover rounded-xl" poster="/images/generative-art/0350.png">
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-          Here you can add more detailed descriptions, process notes, or additional images related to the generative art project. This area is in the main column, so it matches the top of the page and is easy to expand with more content.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div
-              key={i}
-              className="w-full aspect-square bg-zinc-400 rounded-lg shadow-lg flex items-center justify-center text-zinc-700 font-semibold text-lg"
-            >
-              Placeholder
-            </div>
-          ))}
+        <div className="w-full flex flex-col gap-8 mb-8">
+          <div className="w-full aspect-[16/9] bg-zinc-300 rounded-xl overflow-hidden flex items-center justify-center">
+            <img src="/images/generative-art/0350.png" alt="Generative artwork 0350" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-full aspect-[16/9] bg-zinc-300 rounded-xl overflow-hidden flex items-center justify-center">
+            <img src="/images/generative-art/0414.png" alt="Generative artwork 0414" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-full aspect-[16/9] bg-zinc-300 rounded-xl overflow-hidden flex items-center justify-center">
+            <img src="/images/generative-art/0624.png" alt="Generative artwork 0624" className="w-full h-full object-cover" />
+          </div>
         </div>
         {/* EDAA Section */}
         <div className="mt-16">
@@ -60,12 +67,17 @@ export default function GenerativeArtProject() {
             In 2022 I was selected to be Featured Artist for the Emerging Digital Artists Award in Canada.
           </p>
           <div className="flex flex-row gap-6 justify-center">
-            {Array.from({ length: 3 }).map((_, i) => (
+            {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="w-[120px] h-[213px] bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-base shadow-lg"
+                className="w-full max-w-md aspect-[9/16] bg-zinc-300 rounded-xl flex items-center justify-center overflow-hidden shadow-lg"
+                style={{ minWidth: '220px' }}
               >
-                IG Story {i + 1}
+                <img
+                  src={`/images/generative-art/EDAA-process-${i}.png`}
+                  alt={`EDAA Process IG Story ${i}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
             ))}
           </div>
@@ -74,21 +86,30 @@ export default function GenerativeArtProject() {
             <p className="text-zinc-600 dark:text-zinc-400">Each step in the process was documented and shared as part of my daily code sketching practice. These stories highlight the evolution of Space Fling from initial concept to final artwork.</p>
             <p className="text-zinc-600 dark:text-zinc-400">Experimentation and iteration were key to developing the visual language and interactive elements of the piece.</p>
           </div>
-          <div className="flex flex-col items-center mb-4 w-full">
-            <div className="w-full aspect-video bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-base shadow-lg mb-2">
-              Space Fling Artwork
+        </div>
+
+        {/* Final Space Fling Artwork - Full Width */}
+        <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] px-2 sm:px-4 md:px-8 py-8">
+          <div className="flex flex-col items-center">
+            <div className="w-full flex justify-center mb-2">
+              <img
+                src="/images/generative-art/space-fling-01.jpg"
+                alt="Space Fling Artwork"
+                className="w-full max-w-7xl aspect-[16/7] object-cover rounded-xl shadow-2xl"
+              />
             </div>
-            <div className="text-zinc-500 text-sm mb-2 w-full text-left">Final Space Fling artwork</div>
+            <div className="text-zinc-500 text-sm mb-2 w-full text-left max-w-7xl mx-auto">Final Space Fling artwork</div>
             <a
               href="https://cyberia.space/space-fling"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-700 dark:text-blue-400 underline w-full text-left block mt-1"
+              className="text-blue-700 dark:text-blue-400 underline w-full text-left block mt-1 max-w-7xl mx-auto"
             >
               https://cyberia.space/space-fling
             </a>
           </div>
         </div>
+
         {/* Fermented Fruit Section */}
         <div className="mt-16">
           <h2 className="text-2xl font-semibold mb-4">Fermented Fruit</h2>
@@ -96,12 +117,17 @@ export default function GenerativeArtProject() {
             Fermented Fruit is a generative art series created for Art Blocks and rendered in real-time in the browser. The project explores cellular automata, grid subdivisions, and fruit-inspired color palettes to create unique, evolving compositions.
           </p>
           <div className="flex flex-row gap-6 justify-center mb-2">
-            {Array.from({ length: 4 }).map((_, i) => (
+            {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="w-[120px] h-[213px] bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-base shadow-lg"
+                className="w-full max-w-xs sm:max-w-sm md:max-w-md aspect-[9/16] bg-zinc-300 rounded-xl flex items-center justify-center overflow-hidden shadow-lg"
+                style={{ minWidth: '220px' }}
               >
-                IG Story {i + 1}
+                <img
+                  src={`/images/generative-art/IG-fruit-${i}.jpg`}
+                  alt={`Fermented Fruit IG Story ${i}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
             ))}
           </div>
@@ -110,12 +136,17 @@ export default function GenerativeArtProject() {
             The project features the simulated lifeforms of cellular automata that evolve and shapeshift down an asymmetrical grid. The final artwork juxtaposes a number of textured cellular automata patterns against one another within a singular composition. The title <span className="font-semibold">Fermented Fruit</span> emerges from the cellular patterns that are the primary subject of the series. The patterns produced by growing cellular automata of simulated microbes or mold evoke the process of fermentation.
           </p>
           <div className="flex flex-row gap-6 justify-center mb-4">
-            {Array.from({ length: 3 }).map((_, i) => (
+            {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="w-[180px] h-[240px] bg-zinc-300 rounded-xl flex items-center justify-center text-zinc-500 text-base shadow-lg"
+                className="w-full max-w-2xl aspect-[2/3] bg-zinc-300 rounded-xl flex items-center justify-center overflow-hidden shadow-2xl"
+                style={{ minWidth: '320px' }}
               >
-                Poster {i + 1}
+                <img
+                  src={`/images/generative-art/fruit-${i}.png`}
+                  alt={`Fermented Fruit Poster ${i}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
             ))}
           </div>
@@ -125,16 +156,54 @@ export default function GenerativeArtProject() {
           </div>
         </div>
       </div>
+
+      {/* Misc Artwork Grid Section */}
+      <section className="my-12">
+        <h2 className="text-2xl font-semibold mb-6">Misc. Artworks</h2>
+        <RandomMiscArtworkGrid usedImages={parallaxImages} />
+      </section>
     </main>
   );
 }
 
-// ParallaxGrid component
-function ParallaxGrid() {
+// Helper to shuffle an array
+function shuffleArray<T>(array: T[]): T[] {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Custom hook to get number of columns based on screen size
+function useResponsiveColumns() {
+  const [columns, setColumns] = React.useState(1);
+  useEffect(() => {
+    function updateColumns() {
+      if (window.innerWidth >= 1536) setColumns(6); // xl
+      else if (window.innerWidth >= 1280) setColumns(5); // lg
+      else if (window.innerWidth >= 768) setColumns(3); // md
+      else if (window.innerWidth >= 640) setColumns(2); // sm
+      else setColumns(1);
+    }
+    updateColumns();
+    window.addEventListener('resize', updateColumns);
+    return () => window.removeEventListener('resize', updateColumns);
+  }, []);
+  return columns;
+}
+
+function ParallaxGrid({ setParallaxImages }: { setParallaxImages: (imgs: string[]) => void }) {
   const gridRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = React.useState(0);
   const [visible, setVisible] = React.useState(false);
   const [hasInteracted, setHasInteracted] = React.useState(false);
+  const [shuffledArtworks, setShuffledArtworks] = React.useState<string[]>([]);
+  // Fixed columns and rows for a 5x5 grid
+  const columns = 5;
+  const rows = 5;
+  const totalImages = columns * rows;
 
   // Intersection Observer for fade-in
   useEffect(() => {
@@ -166,25 +235,37 @@ function ParallaxGrid() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 24 boxes for a perfect 6x4 grid on xl screens
-  const boxes = Array.from({ length: 24 }, (_, i) => ({ key: i + 1 }));
+  // 26 artworks for the grid
+  const artworkImages = Array.from({ length: 26 }, (_, i) => `/images/generative-art/artwork-${i + 3}.png`);
+
+  // Shuffle on mount
+  useEffect(() => {
+    setShuffledArtworks(shuffleArray(artworkImages).slice(0, totalImages));
+    // eslint-disable-next-line
+  }, []);
+
+  // Always show exactly 25 images
+  const displayedArtworks = shuffledArtworks;
+
+  // After calculating displayedArtworks:
+  useEffect(() => {
+    setParallaxImages(displayedArtworks);
+  }, [displayedArtworks, setParallaxImages]);
 
   return (
     <section
       ref={gridRef}
-      className="w-screen relative left-1/2 right-1/2 -mx-[50vw] px-2 sm:px-4 md:px-8 py-16 md:py-24 lg:py-32 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-8 min-h-[1200px] justify-items-center overflow-x-hidden"
+      className="w-screen relative left-1/2 right-1/2 -mx-[50vw] px-2 sm:px-4 md:px-8 py-16 md:py-24 lg:py-32 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 min-h-[1200px] justify-items-center overflow-x-hidden"
       style={{
         backgroundColor: '#e5e7eb', // Tailwind zinc-200
-        backgroundImage:
-          'repeating-linear-gradient(135deg, #e5e7eb 0px, #e5e7eb 24px, #f1f5f9 24px, #f1f5f9 48px)',
       }}
     >
-      {boxes.map((box, i) => {
+      {displayedArtworks.map((src, i) => {
         const delay = (visible && hasInteracted) ? i * 60 : 0;
         return (
           <div
-            key={box.key}
-            className="w-[200px] h-[200px] rounded-lg shadow-lg overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] bg-zinc-700"
+            key={src}
+            className="w-[260px] h-[260px] rounded-lg shadow-lg overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] bg-zinc-700"
             style={{
               transform: `scale(${visible && hasInteracted ? 1 : 0.7})`,
               opacity: visible ? 1 : 0,
@@ -192,8 +273,8 @@ function ParallaxGrid() {
             }}
           >
             <img
-              src={`https://picsum.photos/seed/${i}/200/200`}
-              alt={`Random generative art ${i + 1}`}
+              src={src}
+              alt="Artwork"
               className="w-full h-full object-cover"
               loading="lazy"
             />
@@ -201,5 +282,64 @@ function ParallaxGrid() {
         );
       })}
     </section>
+  );
+}
+
+function getArtworkFilenames(start: number, end: number): string[] {
+  return Array.from({ length: end - start + 1 }, (_, i) => `/images/generative-art/artwork-${i + start}.png`);
+}
+
+function getRandomUnusedImages(used: string[], count: number): string[] {
+  const all = getArtworkFilenames(2, 39);
+  const unused = all.filter(img => !used.includes(img));
+  // Shuffle unused
+  for (let i = unused.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [unused[i], unused[j]] = [unused[j], unused[i]];
+  }
+  return unused.slice(0, count);
+}
+
+function RandomMiscArtworkGrid({ usedImages }: { usedImages: string[] }) {
+  // 10 images: 6 for 3x2 grid, 4 for 2x2 grid
+  const imagesRef = React.useRef<string[] | null>(null);
+  if (!imagesRef.current) {
+    imagesRef.current = getRandomUnusedImages(usedImages, 10);
+  }
+  const images = imagesRef.current;
+
+  return (
+    <div className="w-full flex flex-col gap-4">
+      {/* First two rows: 3 columns */}
+      <div className="grid grid-cols-3 gap-4">
+        {images.slice(0, 3).map((src, i) => (
+          <div key={src} className="aspect-square bg-zinc-300 rounded-lg overflow-hidden flex items-center justify-center">
+            <img src={src} alt={`Misc Artwork ${i + 1}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+      <div className="grid grid-cols-3 gap-4">
+        {images.slice(3, 6).map((src, i) => (
+          <div key={src} className="aspect-square bg-zinc-300 rounded-lg overflow-hidden flex items-center justify-center">
+            <img src={src} alt={`Misc Artwork ${i + 4}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+      {/* Next two rows: 2 columns, square images */}
+      <div className="grid grid-cols-2 gap-4">
+        {images.slice(6, 8).map((src, i) => (
+          <div key={src} className="aspect-square bg-zinc-300 rounded-lg overflow-hidden flex items-center justify-center">
+            <img src={src} alt={`Misc Artwork ${i + 7}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        {images.slice(8, 10).map((src, i) => (
+          <div key={src} className="aspect-square bg-zinc-300 rounded-lg overflow-hidden flex items-center justify-center">
+            <img src={src} alt={`Misc Artwork ${i + 9}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 } 
