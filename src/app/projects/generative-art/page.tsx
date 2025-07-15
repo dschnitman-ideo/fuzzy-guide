@@ -1,7 +1,94 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+
+// Marquee Component with true infinite loop
+function Marquee({ children, direction = "left", speed = 40, pauseOnHover = true }: {
+  children: React.ReactNode;
+  direction?: "left" | "right";
+  speed?: number;
+  pauseOnHover?: boolean;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [contentWidth, setContentWidth] = useState(0);
+  const [position, setPosition] = useState(0);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const container = containerRef.current;
+      const content = container.firstElementChild as HTMLElement;
+      if (content) {
+        setContainerWidth(container.offsetWidth);
+        setContentWidth(content.scrollWidth);
+        // Set initial position for right-moving columns
+        if (direction === "right") {
+          setPosition(-content.scrollWidth + container.offsetWidth);
+        }
+      }
+    }
+  }, [children, direction]);
+
+  useEffect(() => {
+    let animationId: number;
+    let lastTime = performance.now();
+    const isLeft = direction === "left";
+    const pixelsPerSecond = speed * 10; // Convert speed to pixels per second
+
+    const animate = (currentTime: number) => {
+      if (!isHovered) {
+        const deltaTime = currentTime - lastTime;
+        const deltaPixels = (pixelsPerSecond * deltaTime) / 1000;
+        
+        setPosition((prevPosition: number) => {
+          let newPosition = isLeft ? prevPosition - deltaPixels : prevPosition + deltaPixels;
+          
+          // Reset position when content has moved completely off-screen
+          // For left direction: reset when content has moved completely off the left edge
+          // For right direction: reset when content has moved completely off the right edge
+          if (isLeft && newPosition <= -contentWidth) {
+            newPosition = 0;
+          } else if (!isLeft && newPosition >= 0) {
+            newPosition = -contentWidth;
+          }
+          
+          return newPosition;
+        });
+      }
+      
+      lastTime = currentTime;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [direction, speed, isHovered, contentWidth]);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="flex overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div 
+        className="flex flex-nowrap"
+        style={{
+          transform: `translateX(${position}px)`,
+          willChange: 'transform',
+        }}
+      >
+        {/* Render children multiple times to ensure seamless looping */}
+        {children}
+        {children}
+        {children}
+        {children}
+      </div>
+    </div>
+  );
+}
 
 export default function GenerativeArtProject() {
   const [parallaxImages, setParallaxImages] = React.useState<string[]>([]);
@@ -28,8 +115,8 @@ export default function GenerativeArtProject() {
         </p>
       </div>
 
-      {/* Animated Grid Section (full width) */}
-      <ParallaxGrid setParallaxImages={setParallaxImages} />
+      {/* Marquee Grid Section (full width) */}
+      <MarqueeGrid setParallaxImages={setParallaxImages} />
 
       {/* Sticker Pack Project Details */}
       <div className="prose dark:prose-invert max-w-none mt-16">
@@ -88,6 +175,18 @@ export default function GenerativeArtProject() {
           </div>
         </div>
 
+        {/* Space Fling Link */}
+        <div className="prose dark:prose-invert max-w-none mb-8">
+          <a
+            href="https://cyberia.codes/space-fling.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-700 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+          >
+            View Space Fling Interactive <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
         {/* Final Space Fling Artwork - Full Width */}
         <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] px-2 sm:px-4 md:px-8 py-8">
           <div className="flex flex-col items-center">
@@ -99,14 +198,6 @@ export default function GenerativeArtProject() {
               />
             </div>
             <div className="text-zinc-500 text-sm mb-2 w-full text-left max-w-7xl mx-auto">Final Space Fling artwork</div>
-            <a
-              href="https://cyberia.space/space-fling"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-700 dark:text-blue-400 underline w-full text-left block mt-1 max-w-7xl mx-auto"
-            >
-              https://cyberia.space/space-fling
-            </a>
           </div>
         </div>
 
@@ -135,6 +226,24 @@ export default function GenerativeArtProject() {
           <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
             The project features the simulated lifeforms of cellular automata that evolve and shapeshift down an asymmetrical grid. The final artwork juxtaposes a number of textured cellular automata patterns against one another within a singular composition. The title <span className="font-semibold">Fermented Fruit</span> emerges from the cellular patterns that are the primary subject of the series. The patterns produced by growing cellular automata of simulated microbes or mold evoke the process of fermentation.
           </p>
+          <div className="flex flex-col gap-2 w-full max-w-2xl mx-auto mb-8">
+            <a 
+              href="https://www.artblocks.io/collections/presents/projects/0x7f6b468b54c6e2b3e3e2c2b2e2e2e2e2e2e2e2" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-blue-700 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+            >
+              View on Art Blocks <span aria-hidden="true">↗</span>
+            </a>
+            <a 
+              href="https://cyberia.codes/fruit.html" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-blue-700 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+            >
+              View Fermented Fruit Interactive <span aria-hidden="true">↗</span>
+            </a>
+          </div>
           <div className="flex flex-row gap-6 justify-center mb-4">
             {[1, 2, 3, 4].map((i) => (
               <div
@@ -150,15 +259,11 @@ export default function GenerativeArtProject() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-2 w-full max-w-2xl mx-auto">
-            <a href="https://www.artblocks.io/collections/presents/projects/0x7f6b468b54c6e2b3e3e2c2b2e2e2e2e2e2e2e2e2" target="_blank" rel="noopener noreferrer" className="text-blue-700 dark:text-blue-400 underline text-left">View on Art Blocks</a>
-            <a href="https://cyberia.codes/fruit.html" target="_blank" rel="noopener noreferrer" className="text-blue-700 dark:text-blue-400 underline text-left">https://cyberia.codes/fruit.html</a>
-          </div>
         </div>
       </div>
 
       {/* Misc Artwork Grid Section */}
-      <section className="my-12">
+      <section className="mt-24 mb-12">
         <h2 className="text-2xl font-semibold mb-6">Misc. Artworks</h2>
         <RandomMiscArtworkGrid usedImages={parallaxImages} />
       </section>
@@ -194,93 +299,86 @@ function useResponsiveColumns() {
   return columns;
 }
 
-function ParallaxGrid({ setParallaxImages }: { setParallaxImages: (imgs: string[]) => void }) {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [scrollY, setScrollY] = React.useState(0);
-  const [visible, setVisible] = React.useState(false);
-  const [hasInteracted, setHasInteracted] = React.useState(false);
+function MarqueeGrid({ setParallaxImages }: { setParallaxImages: (imgs: string[]) => void }) {
   const [shuffledArtworks, setShuffledArtworks] = React.useState<string[]>([]);
-  // Fixed columns and rows for a 5x5 grid
-  const columns = 5;
-  const rows = 5;
-  const totalImages = columns * rows;
-
-  // Intersection Observer for fade-in
-  useEffect(() => {
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.2 }
-    );
-    if (gridRef.current) observer.observe(gridRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // Listen for first scroll or touch interaction
-  useEffect(() => {
-    if (hasInteracted) return;
-    const handleFirstInteraction = () => setHasInteracted(true);
-    window.addEventListener('scroll', handleFirstInteraction, { once: true });
-    window.addEventListener('touchstart', handleFirstInteraction, { once: true });
-    return () => {
-      window.removeEventListener('scroll', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-    };
-  }, [hasInteracted]);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // 26 artworks for the grid
+  
+  // 26 artworks for the marquee
   const artworkImages = Array.from({ length: 26 }, (_, i) => `/images/generative-art/artwork-${i + 3}.png`);
 
   // Shuffle on mount
   useEffect(() => {
-    setShuffledArtworks(shuffleArray(artworkImages).slice(0, totalImages));
+    setShuffledArtworks(shuffleArray(artworkImages));
     // eslint-disable-next-line
   }, []);
 
-  // Always show exactly 25 images
-  const displayedArtworks = shuffledArtworks;
-
-  // After calculating displayedArtworks:
+  // After calculating shuffledArtworks:
   useEffect(() => {
-    setParallaxImages(displayedArtworks);
-  }, [displayedArtworks, setParallaxImages]);
+    setParallaxImages(shuffledArtworks);
+  }, [shuffledArtworks, setParallaxImages]);
 
   return (
     <section
-      ref={gridRef}
-      className="w-screen relative left-1/2 right-1/2 -mx-[50vw] px-2 sm:px-4 md:px-8 py-16 md:py-24 lg:py-32 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 min-h-[1200px] justify-items-center overflow-x-hidden"
+      className="w-screen relative left-1/2 right-1/2 -mx-[50vw] py-16 md:py-24 lg:py-32 overflow-hidden"
       style={{
-        backgroundColor: '#e5e7eb', // Tailwind zinc-200
+        backgroundColor: '#000000', // Black background
       }}
     >
-      {displayedArtworks.map((src, i) => {
-        const delay = (visible && hasInteracted) ? i * 60 : 0;
-        return (
-          <div
-            key={src}
-            className="w-[260px] h-[260px] rounded-lg shadow-lg overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] bg-zinc-700"
-            style={{
-              transform: `scale(${visible && hasInteracted ? 1 : 0.7})`,
-              opacity: visible ? 1 : 0,
-              transitionDelay: `${delay}ms`,
-            }}
-          >
-            <img
-              src={src}
-              alt="Artwork"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        );
-      })}
+      {/* First Marquee Row */}
+      <div className="mb-8">
+        <Marquee direction="left" speed={8}>
+          {shuffledArtworks.slice(0, 8).map((src, i) => (
+            <div
+              key={`row1-${i}`}
+              className="w-[260px] h-[260px] rounded-lg shadow-lg overflow-hidden mx-4 bg-zinc-700 flex-shrink-0"
+            >
+              <img
+                src={src}
+                alt="Artwork"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </Marquee>
+      </div>
+
+      {/* Second Marquee Row */}
+      <div className="mb-8">
+        <Marquee direction="right" speed={6}>
+          {shuffledArtworks.slice(8, 16).map((src, i) => (
+            <div
+              key={`row2-${i}`}
+              className="w-[260px] h-[260px] rounded-lg shadow-lg overflow-hidden mx-4 bg-zinc-700 flex-shrink-0"
+            >
+              <img
+                src={src}
+                alt="Artwork"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </Marquee>
+      </div>
+
+      {/* Third Marquee Row */}
+      <div>
+        <Marquee direction="left" speed={7}>
+          {shuffledArtworks.slice(16, 24).map((src, i) => (
+            <div
+              key={`row3-${i}`}
+              className="w-[260px] h-[260px] rounded-lg shadow-lg overflow-hidden mx-4 bg-zinc-700 flex-shrink-0"
+            >
+              <img
+                src={src}
+                alt="Artwork"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </Marquee>
+      </div>
     </section>
   );
 }
