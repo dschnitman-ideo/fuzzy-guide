@@ -101,7 +101,7 @@ export default function GenerativeArtProject() {
       <h1 className="text-4xl font-bold mb-6">Generative Art</h1>
       
       <div className="prose dark:prose-invert max-w-none">
-        <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+        <p className="text-lg text-zinc-600 dark:text-zinc-200 mb-8">
           I am a generative artist exploring form through code under the alias 
           <a 
             href="https://www.instagram.com/_cyber.ia/" 
@@ -111,7 +111,7 @@ export default function GenerativeArtProject() {
           >
             cyberia <span aria-hidden="true" className="ml-1">↗</span>
           </a>.
-          For over two years, I've committed to an iterative practice of daily code sketching in Processing and p5.js. All of this work was coded by hand, drawing on open source references, prior to the advent of AI coding tools.
+          For over two years, I committed to an iterative practice of daily code sketching in Processing and p5.js. All of this work was coded by hand, drawing on open source references, prior to the advent of AI coding tools.
         </p>
       </div>
 
@@ -125,7 +125,7 @@ export default function GenerativeArtProject() {
 
       {/* Column content below the grid */}
       <div className="prose dark:prose-invert max-w-none mt-8">
-        <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+        <p className="text-lg text-zinc-600 dark:text-zinc-200 mb-8">
           My digital artwork, <span className="font-semibold">Sticker Pack</span>, is a generative piece created with the p5.js JavaScript library. The work was featured on 85 billboards on NEO SHIBUYA TV in Tokyo, Japan. The animation runs 28 seconds in MP4 format at 1920 x 1080 resolution.
         </p>
         <div className="w-full flex justify-center mb-8">
@@ -150,7 +150,7 @@ export default function GenerativeArtProject() {
         {/* EDAA Section */}
         <div className="mt-16">
           <h2 className="text-2xl font-semibold mb-4">Emerging Digital Artists Award</h2>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+          <p className="text-lg text-zinc-600 dark:text-zinc-200 mb-8">
             In 2022 I was selected to be Featured Artist for the Emerging Digital Artists Award in Canada.
           </p>
           <div className="flex flex-row gap-6 justify-center">
@@ -170,8 +170,8 @@ export default function GenerativeArtProject() {
           </div>
           <div className="text-center text-zinc-500 text-sm mt-2">Process breakdown for Space Fling artwork</div>
           <div className="prose dark:prose-invert max-w-none mt-6 mb-8">
-            <p className="text-zinc-600 dark:text-zinc-400">Each step in the process was documented and shared as part of my daily code sketching practice. These stories highlight the evolution of Space Fling from initial concept to final artwork.</p>
-            <p className="text-zinc-600 dark:text-zinc-400">Experimentation and iteration were key to developing the visual language and interactive elements of the piece.</p>
+            <p className="text-zinc-600 dark:text-zinc-200">Each step in the process was documented and shared as part of my daily code sketching practice. These stories highlight the evolution of Space Fling from initial concept to final artwork.</p>
+            <p className="text-zinc-600 dark:text-zinc-200">Experimentation and iteration were key to developing the visual language and interactive elements of the piece.</p>
           </div>
         </div>
 
@@ -204,7 +204,7 @@ export default function GenerativeArtProject() {
         {/* Fermented Fruit Section */}
         <div className="mt-16">
           <h2 className="text-2xl font-semibold mb-4">Fermented Fruit</h2>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+          <p className="text-lg text-zinc-600 dark:text-zinc-200 mb-8">
             Fermented Fruit is a generative art series created for Art Blocks and rendered in real-time in the browser. The project explores cellular automata, grid subdivisions, and fruit-inspired color palettes to create unique, evolving compositions.
           </p>
           <div className="flex flex-row gap-6 justify-center mb-2">
@@ -223,7 +223,7 @@ export default function GenerativeArtProject() {
             ))}
           </div>
           <div className="text-center text-zinc-500 text-sm mb-6">Process breakdown for Fermented Fruit</div>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+          <p className="text-lg text-zinc-600 dark:text-zinc-200 mb-8">
             The project features the simulated lifeforms of cellular automata that evolve and shapeshift down an asymmetrical grid. The final artwork juxtaposes a number of textured cellular automata patterns against one another within a singular composition. The title <span className="font-semibold">Fermented Fruit</span> emerges from the cellular patterns that are the primary subject of the series. The patterns produced by growing cellular automata of simulated microbes or mold evoke the process of fermentation.
           </p>
           <div className="flex flex-col gap-2 w-full max-w-2xl mx-auto mb-8">

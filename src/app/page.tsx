@@ -73,7 +73,7 @@ export default function Home() {
         <main className="max-w-4xl mx-auto px-8 py-20">
           <section className={`mb-16 ${shouldShowFadeIn ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.2s' }}>
             <h1 className="text-4xl font-bold mb-2">David Schnitman</h1>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400">
+            <p className="text-lg text-zinc-600 dark:text-zinc-200">
               Senior Interaction Design Lead at IDEO
             </p>
           </section>
@@ -90,7 +90,7 @@ export default function Home() {
                     The Wall Street Journal
                   </Link>
                 </h3>
-                <p className="text-zinc-600 dark:text-zinc-400">Short description here.</p>
+                <p className="text-lg text-zinc-600 dark:text-zinc-200">A complete redesign of the WSJ app, creating a premium feel to match premium journalism.</p>
               </div>
               <div className={shouldShowFadeIn ? 'animate-fade-in' : ''} style={{ animationDelay: '0.8s' }}>
                 <Link href="/projects/abbott" className="block">
@@ -101,7 +101,7 @@ export default function Home() {
                     Abbott Diabetes Care
                   </Link>
                 </h3>
-                <p className="text-zinc-600 dark:text-zinc-400">Short description here.</p>
+                <p className="text-lg text-zinc-600 dark:text-zinc-200">A unified design system for patient-centered diabetes care across products and journeys.</p>
               </div>
               <div className={shouldShowFadeIn ? 'animate-fade-in' : ''} style={{ animationDelay: '1.1s' }}>
                 <Link href="/projects/last-mile-money" className="block">
@@ -118,7 +118,7 @@ export default function Home() {
                     Last Mile Money
                   </Link>
                 </h3>
-                <p className="text-zinc-600 dark:text-zinc-400">A collection of three financial futures for women, networks, and digital finance.</p>
+                <p className="text-lg text-zinc-600 dark:text-zinc-200">A collection of three financial futures for women, networks, and digital finance.</p>
               </div>
               <div className={shouldShowFadeIn ? 'animate-fade-in' : ''} style={{ animationDelay: '1.4s' }}>
                 <Link href="/projects/generative-art" className="block">
@@ -135,13 +135,13 @@ export default function Home() {
                     Generative Art
                   </Link>
                 </h3>
-                <p className="text-zinc-600 dark:text-zinc-400">Code sketching in Processing and p5.js.</p>
+                <p className="text-lg text-zinc-600 dark:text-zinc-200">Code sketching in Processing and p5.js.</p>
               </div>
             </div>
           </section>
 
           <section className={shouldShowFadeIn ? 'animate-fade-in' : ''} style={{ animationDelay: '1.7s' }}>
-            <footer className="flex items-center justify-between mt-16 text-zinc-600 dark:text-zinc-400 text-base">
+            <footer className="flex items-center justify-between mt-16 text-zinc-600 dark:text-zinc-200 text-base">
               <div>
                 © {currentYear} / David Schnitman / Built with{' '}
                 <a href="https://cursor.sh" className="hover:underline inline-flex items-center" target="_blank" rel="noopener noreferrer">

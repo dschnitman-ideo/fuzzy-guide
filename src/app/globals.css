@@ -17,8 +17,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
-    --zinc-200: var(--zinc-700);
+    --foreground: #f5f5f5;
+    color-scheme: dark;
   }
 }
 
@@ -79,8 +79,11 @@ p {
   color: var(--zinc-600);
 }
 
-.dark p {
-  color: var(--zinc-400);
+@media (prefers-color-scheme: dark) {
+  p,
+  li {
+    color: #e4e4e7;
+  }
 }
 
 /* Link Styles */
@@ -122,8 +125,10 @@ a:hover {
   z-index: -1;
 }
 
-.dark .social-link::before {
-  background: var(--zinc-700);
+@media (prefers-color-scheme: dark) {
+  .social-link::before {
+    background: var(--zinc-700);
+  }
 }
 
 .social-link:hover {
@@ -168,9 +173,11 @@ a:hover {
   opacity: 0.8;
 }
 
-.dark .experience-item::before {
-  background-color: var(--zinc-700);
-  opacity: 0.6;
+@media (prefers-color-scheme: dark) {
+  .experience-item::before {
+    background-color: var(--zinc-700);
+    opacity: 0.6;
+  }
 }
 
 .experience-item:last-child::before {
@@ -207,8 +214,10 @@ a:hover {
   max-width: 36rem;
 }
 
-.dark .experience-description {
-  color: var(--zinc-400);
+@media (prefers-color-scheme: dark) {
+  .experience-description {
+    color: #e4e4e7;
+  }
 }
 
 /* Utilities */
@@ -241,8 +250,20 @@ a:hover {
   color: var(--zinc-500);
 }
 
-.dark .text-zinc-400 {
-  color: var(--zinc-400);
+@media (prefers-color-scheme: dark) {
+  .text-zinc-400,
+  .text-zinc-500,
+  .text-zinc-600,
+  .dark\:text-zinc-400,
+  .dark\:text-zinc-200 {
+    color: #e4e4e7;
+  }
+
+  .text-blue-700,
+  .dark\:text-blue-400,
+  .dark\:text-blue-300 {
+    color: #93c5fd;
+  }
 }
 
 @media (max-width: 768px) {

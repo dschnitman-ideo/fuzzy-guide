@@ -42,7 +42,7 @@ export default function About() {
       }`} style={{ animationDelay: '0.2s', zIndex: 5 }}>
         <section className="mb-16">
           <h1 className="text-4xl font-bold mb-4">About</h1>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400">
+          <p className="text-lg text-zinc-600 dark:text-zinc-200">
             I am a San Francisco-based designer and front-end web developer working across data visualization, mapping and interaction design. I currently work at IDEO, where I lead interdisciplinary teams to deliver complex design work rooted in user research and creative problem-solving. In 2022 I was selected as a Featured Artist for the Emerging Digital Artists Award in Canada. In the past, I have collaborated on art projects at the Museum of Contemporary Art in Detroit and at the Art Museum at the University of Toronto. I received my Bachelors of Design from OCAD University in 2014.
           </p>
         </section>

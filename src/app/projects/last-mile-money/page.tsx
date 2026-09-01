@@ -15,7 +15,7 @@ export default function LastMileMoneyProject() {
         <p>
           Looking ahead, we envision a future where women are at the center of finance, the last mile will be no mile at all, and financial services will become invisible—seamlessly integrated into daily life. These three bold futures guided the direction of the Financial Futures report.
         </p>
-        <blockquote className="border-l-4 border-blue-400 pl-4 italic my-6 text-zinc-600 dark:text-zinc-400">
+        <blockquote className="border-l-4 border-blue-400 pl-4 italic my-6 text-zinc-600 dark:text-zinc-200">
           IDEO Last Mile Money is transforming digital financial services globally through a design-driven lens, reaching the most underserved users and accelerating the businesses of tomorrow.
         </blockquote>
         <h2 className="text-xl font-semibold mt-8 mb-2">Project Management & Process</h2>
